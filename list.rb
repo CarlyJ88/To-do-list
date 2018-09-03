@@ -1,8 +1,13 @@
+def if_a_number(delete_this)
+  delete_this =~ /^\d+$/
+end
+
 def list_to_do(to_do)
-  puts "I need to: "
+  puts "\nI need to: "
   to_do.each_with_index do |x, index|
     puts "#{index}: #{x}"
   end
+  puts ""
 end
 
 def add_item(to_do)
@@ -12,22 +17,40 @@ def add_item(to_do)
 end
 
 def delete_item(to_do)
-  puts "Are you sure you would like to delete this?"
+  puts "Please state the number of the item you would like to delete from the list below."
+
+  loop do
+    list_to_do(to_do)
+    delete_this = $stdin.gets.chomp
+
+     if if_a_number(delete_this)
+       delete_this = delete_this.to_i
+       to_do.delete_at(delete_this)
+       list_to_do(to_do)
+       break
+    else
+      puts "Please enter the number of the item you would like to delete again."
+    end
+  end
 end
 
 def bye
-  puts "Bye, for now."
+  puts "Are you sure?"
+  user = $stdin.gets.chomp.downcase
+  if user == "yes"
+    puts "Bye, for now."
+    exit(0)
+  end
 end
 
-
 def select_item
-  puts "Press 1 to print the list"
+  puts "\nPress 1 to print the list"
   puts "Press 2 to add a new item to the list"
   puts "Press 3 to delete an element from the list"
   puts "Press 4 to exit the program"
   puts "Press any other number if you would like to repeat the list"
   puts ">"
-  $stdin.gets.chomp
+  $stdin.gets.chomp.to_i
 end
 
 def choice
@@ -36,16 +59,15 @@ def choice
   loop do
     number = select_item
 
-    if number == "1"
+    if number == 1
       list_to_do(to_do)
-    elsif number == "2"
+    elsif number == 2
       add_item(to_do)
-    elsif number == "3"
+    elsif number == 3
       delete_item(to_do)
-    elsif number == "4"
+    elsif number == 4
       bye
     end
-    break if number=="4"
   end
 end
 
