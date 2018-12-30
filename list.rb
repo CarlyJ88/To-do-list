@@ -26,8 +26,8 @@ end
 def initialize_items
   items = []
   file = File.open('items.txt')
-  file.each do |x|
-    items.push(x)
+  file.each do |read_one_line_in_file|
+    items.push(read_one_line_in_file.strip)
   end
   items
 end

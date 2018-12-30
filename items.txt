@@ -1,7 +1,7 @@
-drink water
-
-eat
-
-drink
-
 sleep
+eat
+drink
+sleep more
+wake up
+code
+code more
