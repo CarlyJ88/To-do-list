@@ -32,17 +32,13 @@ def initialize_items
   items
 end
 
-@menu = {
-  1 => ->(items) { write_file(items, 'items.txt') },
-  2 => ->(items) { add_item(items) },
-  3 => ->(items) { delete_item(items) }
-}
-
 def choice
   items = initialize_items
   loop do
     number = select_item
-    @menu[number].call(items) if number > 0 && number < 4
+    write_file(items, 'items.txt') if number == 1
+    add_item(items) if number == 2
+    delete_item(items) if number == 3
     bye if number == 4
   end
 end
