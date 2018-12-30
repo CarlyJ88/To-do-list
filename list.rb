@@ -33,7 +33,7 @@ def initialize_items
 end
 
 @menu = {
-  1 => ->(items) { write_file(items,'items.txt') },
+  1 => ->(items) { write_file(items, 'items.txt') },
   2 => ->(items) { add_item(items) },
   3 => ->(items) { delete_item(items) }
 }
